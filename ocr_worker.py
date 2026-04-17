@@ -36,13 +36,8 @@ class OCRWorker:
 
         logging.info(f"Initializing PaddleOCR (Lang: {self.lang})...")
         try:
-            self.ocr_engine = PaddleOCR(
-                use_angle_cls=True,
-                lang=self.lang,
-                enable_mkldnn=False,    # Disable MKL-DNN — not supported on ARM
-                cpu_threads=1,          # Single thread to prevent ARM segfault
-                show_log=False
-            )
+            # PaddleOCR v3.x has a minimal API — only use_angle_cls and lang are safe
+            self.ocr_engine = PaddleOCR(use_angle_cls=True, lang=self.lang)
             logging.info("PaddleOCR initialized successfully.")
         except Exception as e:
             logging.error(f"Failed to initialize PaddleOCR: {e}")
