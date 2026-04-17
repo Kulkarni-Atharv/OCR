@@ -14,8 +14,8 @@ class CameraManager:
         
         # We configure 'main' for high-res OCR, and 'lores' can be used for live preview if needed
         video_config = self.picam2.create_video_configuration(
-            main={"size": (1456, 1088), "format": "RGB888"},
-            lores={"size": (640, 480), "format": "RGB888"},
+            main={"size": (1456, 1088), "format": "BGR888"},
+            lores={"size": (640, 480), "format": "BGR888"},
             controls={
                 "FrameRate": self.fps,
                 "ExposureTime": self.exposure,
@@ -36,9 +36,7 @@ class CameraManager:
         try:
             # We use 'main' to get the high-resolution frame for better text extraction
             frame = self.picam2.capture_array("main")
-            # Convert RGB to BGR for OpenCV
-            frame_bgr = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-            return frame_bgr
+            return frame
         except Exception as e:
             print("Error capturing frame:", e)
             return None
