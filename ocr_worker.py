@@ -39,7 +39,6 @@ class OCRWorker:
             self.ocr_engine = PaddleOCR(
                 use_angle_cls=True,
                 lang=self.lang,
-                use_gpu=False,          # CPU-only for Raspberry Pi
                 enable_mkldnn=False,    # Disable MKL-DNN — not supported on ARM
                 cpu_threads=1,          # Single thread to prevent ARM segfault
                 show_log=False
