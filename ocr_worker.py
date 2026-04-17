@@ -98,7 +98,8 @@ class OCRWorker:
 
         logging.info("Starting text extraction...")
         try:
-            result = self.ocr_engine.ocr(process_img, cls=True)
+            # PaddleOCR v3.x: ocr() takes only the image, no extra args
+            result = self.ocr_engine.ocr(process_img)
 
             extracted_text = []
             if result and result[0]:
