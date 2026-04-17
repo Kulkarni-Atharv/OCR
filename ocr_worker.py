@@ -114,7 +114,7 @@ class OCRWorker:
             else:
                 print("\n--- OCR EXTRACTION RESULT ---")
                 print(final_text)
-                print(f"--- Time: {elapsed} ---\n")
+                print("-----------------------------\n")
 
             return final_text
 
